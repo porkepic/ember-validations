@@ -13,7 +13,7 @@ export default Base.extend({
     }
 
     if (this.options.message === undefined) {
-      set(this, 'options.message', Messages.render('inclusion', this.options));
+      set(this, 'options.message', Messages.render('inclusion', this.options), this.get("i18n"));
     }
   },
   call: function() {

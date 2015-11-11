@@ -4,6 +4,7 @@ var get = Ember.get;
 var set = Ember.set;
 
 export default Ember.Object.extend({
+  i18n: Ember.inject.service(),
   init: function() {
     set(this, 'errors', Ember.A());
     this.dependentValidationKeys = Ember.A();

@@ -13,7 +13,7 @@ export default Base.extend({
     }
 
     if (this.options.message === undefined) {
-      this.options.message = Messages.render('blank', this.options);
+      this.options.message = Messages.render('blank', this.options, this.get("i18n"));
     }
   },
   call: function() {

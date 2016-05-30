@@ -62,7 +62,7 @@ export default Base.extend({
       options[_key] = this.options[_key];
     }
 
-    return this.options.messages[this.MESSAGES[key]] || Messages.render(this.MESSAGES[key], options);
+    return this.options.messages[this.MESSAGES[key]] || Messages.render(this.MESSAGES[key], options, this.get("i18n"));
   },
   renderBlankMessage: function() {
     if (this.options.is) {

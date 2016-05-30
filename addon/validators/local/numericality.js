@@ -21,11 +21,11 @@ export default Base.extend({
 
     if (this.options.messages === undefined || this.options.messages.numericality === undefined) {
       this.options.messages = this.options.messages || {};
-      this.options.messages.numericality = Messages.render('notANumber', this.options);
+      this.options.messages.numericality = Messages.render('notANumber', this.options, this.get("i18n"));
     }
 
     if (this.options.onlyInteger !== undefined && this.options.messages.onlyInteger === undefined) {
-      this.options.messages.onlyInteger = Messages.render('notAnInteger', this.options);
+      this.options.messages.onlyInteger = Messages.render('notAnInteger', this.options, this.get("i18n"));
     }
 
     keys = Object.keys(this.CHECKS).concat(['odd', 'even']);
@@ -43,7 +43,7 @@ export default Base.extend({
         if (Ember.$.inArray(key, Object.keys(this.CHECKS)) !== -1) {
           this.options.count = prop;
         }
-        this.options.messages[key] = Messages.render(key, this.options);
+        this.options.messages[key] = Messages.render(key, this.options, this.get("i18n"));
         if (this.options.count !== undefined) {
           delete this.options.count;
         }

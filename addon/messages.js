@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 export default {
-  render: function(attribute, context) {
-    if (Ember.I18n) {
-      return Ember.I18n.t('errors.' + attribute, context);
+  render: function(attribute, context, i18n) {
+    if (i18n) {
+      return i18n.t('errors.' + attribute, context);
     } else {
       var regex = new RegExp("{{(.*?)}}"),
           attributeName = "";

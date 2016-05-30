@@ -14,7 +14,7 @@ export default Base.extend({
     }
 
     if (this.options.message === undefined) {
-      set(this, 'options.message', Messages.render('present', this.options));
+      set(this, 'options.message', Messages.render('present', this.options, this.get("i18n")));
     }
   },
   call: function() {

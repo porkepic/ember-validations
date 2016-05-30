@@ -4,6 +4,7 @@ var get = Ember.get;
 var set = Ember.set;
 
 export default Ember.Object.extend({
+  i18n: Ember.inject.service(),
   init: function() {
     set(this, 'errors', Ember.A());
     this.dependentValidationKeys = Ember.A();
@@ -57,16 +58,27 @@ export default Ember.Object.extend({
     });
   },
   _validate: Ember.on('init', function() {
+    var self = this;
+    return new Ember.RSVP.Promise(function(resolve){
+      self._resolve = resolve;
+      Ember.run.debounce(self, "debouncedValidate", 100);
+    });
+  }),
+  debouncedValidate: function(){
     this.errors.clear();
     if (this.canValidate()) {
-      this.call();
+      try{
+        this.call();
+      }catch(e){
+        return this._resolve(false);  
+      }
     }
     if (get(this, 'isValid')) {
-      return Ember.RSVP.resolve(true);
+      return this._resolve(true);
     } else {
-      return Ember.RSVP.resolve(false);
+      return this._resolve(false);
     }
-  }),
+  },
   canValidate: function() {
     if (typeof(this.conditionals) === 'object') {
       if (this.conditionals['if']) {

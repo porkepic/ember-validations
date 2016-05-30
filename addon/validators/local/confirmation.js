@@ -14,7 +14,7 @@ export default Base.extend({
     /*jshint expr:true*/
     if (this.options === true) {
       set(this, 'options', { attribute: this.originalProperty });
-      set(this, 'options', { message: Messages.render('confirmation', this.options) });
+      set(this, 'options', { message: Messages.render('confirmation', this.options, this.get("i18n")) });
     }
   },
   call: function() {
